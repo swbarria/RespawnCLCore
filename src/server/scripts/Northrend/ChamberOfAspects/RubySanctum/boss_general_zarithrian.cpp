@@ -44,7 +44,7 @@ enum Events
 {
     // General Zarithrian
     EVENT_CLEAVE                    = 1,
-    EVENT_INTIDMDATING_ROAR         = 2,
+    EVENT_INTIMIDATING_ROAR         = 2,
     EVENT_SUMMON_ADDS               = 3,
     // Onyx Flamecaller
     EVENT_BLAST_NOVA                = 4,
@@ -53,7 +53,7 @@ enum Events
 
 uint32 const MAX_PATH_FLAMECALLER_WAYPOINTS = 12;
 
-Position const FlamecallerWaypoints[MAX_PATH_FLAMECALLER_WAYPOINTS*2] =
+Position const FlamecallerWaypoints[MAX_PATH_FLAMECALLER_WAYPOINTS * 2] =
 {
     // East
     {3042.971f, 419.8809f, 86.94320f, 0.0f},
@@ -107,7 +107,7 @@ class boss_general_zarithrian : public CreatureScript
                 Talk(SAY_AGGRO);
                 events.Reset();
                 events.ScheduleEvent(EVENT_CLEAVE, 15000);
-                events.ScheduleEvent(EVENT_INTIDMDATING_ROAR, 42000);
+                events.ScheduleEvent(EVENT_INTIMIDATING_ROAR, 42000);
                 events.ScheduleEvent(EVENT_SUMMON_ADDS, 40000);
             }
 
@@ -158,17 +158,17 @@ class boss_general_zarithrian : public CreatureScript
                     {
                         case EVENT_SUMMON_ADDS:
                         {
-                            if (Creature* stalker1 = ObjectAccessor::GetCreature(*me, instance->GetData64(DATA_ZARITHIAN_SPAWN_STALKER_1)))
+                            if (Creature* stalker1 = ObjectAccessor::GetCreature(*me, instance->GetData64(DATA_ZARITHRIAN_SPAWN_STALKER_1)))
                                 stalker1->AI()->DoCast(stalker1, SPELL_SUMMON_FLAMECALLER);
-                            if (Creature* stalker2 = ObjectAccessor::GetCreature(*me, instance->GetData64(DATA_ZARITHIAN_SPAWN_STALKER_2)))
+                            if (Creature* stalker2 = ObjectAccessor::GetCreature(*me, instance->GetData64(DATA_ZARITHRIAN_SPAWN_STALKER_2)))
                                 stalker2->AI()->DoCast(stalker2, SPELL_SUMMON_FLAMECALLER);
                             Talk(SAY_ADDS);
                             events.ScheduleEvent(EVENT_SUMMON_ADDS, 42000);
                             break;
                         }
-                        case EVENT_INTIDMDATING_ROAR:
+                        case EVENT_INTIMIDATING_ROAR:
                             DoCast(me, SPELL_INTIMIDATING_ROAR, true);
-                            events.ScheduleEvent(EVENT_INTIDMDATING_ROAR, 42000);
+                            events.ScheduleEvent(EVENT_INTIMIDATING_ROAR, 42000);
                         case EVENT_CLEAVE:
                             DoCastVictim(SPELL_CLEAVE_ARMOR);
                             events.ScheduleEvent(EVENT_CLEAVE, 15000);
