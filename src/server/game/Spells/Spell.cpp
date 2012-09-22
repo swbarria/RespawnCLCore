@@ -2187,7 +2187,11 @@ void Spell::AddUnitTarget(Unit* target, uint32 effectMask, bool checkIfValid /*=
             m_delayMoment = targetInfo.timeDelay;
     }
     else
-        targetInfo.timeDelay = 0LL;
+        {
+            targetInfo.timeDelay = GetCCDelay(m_spellInfo);
+            if (m_delayMoment == 0 || m_delayMoment > targetInfo.timeDelay)
+            m_delayMoment = targetInfo.timeDelay;
+        }
 
     // If target reflect spell back to caster
     if (targetInfo.missCondition == SPELL_MISS_REFLECT)
@@ -3289,7 +3293,7 @@ void Spell::cast(bool skipCheck)
     SendSpellGo();
 
     // Okay, everything is prepared. Now we need to distinguish between immediate and evented delayed spells
-    if ((m_spellInfo->Speed > 0.0f && !m_spellInfo->IsChanneled()) || m_spellInfo->Id == 14157)
+    if (((m_spellInfo->Speed > 0.0f || GetCCDelay(m_spellInfo) > 0) && !m_spellInfo->IsChanneled()) || m_spellInfo->Id == 14157)
     {
         // Remove used for cast item if need (it can be already NULL after TakeReagents call
         // in case delayed spell remove item at cast delay start
