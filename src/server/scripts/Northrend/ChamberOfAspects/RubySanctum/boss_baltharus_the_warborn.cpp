@@ -151,20 +151,20 @@ class boss_baltharus_the_warborn : public CreatureScript
                 {
                     case RAID_DIFFICULTY_10MAN_NORMAL:
 					case RAID_DIFFICULTY_10MAN_HEROIC:           
-                    {
-                    if (me->HealthBelowPctDamaged(50, damage) && _cloneCount == 1)
-                        DoAction(ACTION_CLONE);
-                    break;
-                    }
+                        {
+                        if (me->HealthBelowPctDamaged(50, damage) && _cloneCount == 1)
+                            DoAction(ACTION_CLONE);
+                        break;
+                        }
 					case RAID_DIFFICULTY_25MAN_NORMAL:
                     case RAID_DIFFICULTY_25MAN_HEROIC:
-                    {
-                    if (me->HealthBelowPctDamaged(66, damage) && _cloneCount == 2)
-                        DoAction(ACTION_CLONE);
-                    if (me->HealthBelowPctDamaged(33, damage) && _cloneCount == 1)
-                        DoAction(ACTION_CLONE);
-                    break;
-                    }
+                        {
+                        if (me->HealthBelowPctDamaged(66, damage) && _cloneCount == 2)
+                            DoAction(ACTION_CLONE);
+                        if (me->HealthBelowPctDamaged(33, damage) && _cloneCount == 1)
+                            DoAction(ACTION_CLONE);
+                        break;
+                        }
                     default: 
                         break;
                 }
@@ -351,9 +351,3 @@ void AddSC_boss_baltharus_the_warborn()
     new npc_baltharus_the_warborn_clone();
     new spell_baltharus_enervating_brand_trigger();
 }
-                         DoAction(ACTION_CLONE);
--                    else if (me->HealthBelowPctDamaged(33, damage) && _cloneCount == 1)
-+                    if (me->HealthBelowPctDamaged(33, damage) && _cloneCount == 1)
-                         DoAction(ACTION_CLONE);
-+                    break;
-+                    }
