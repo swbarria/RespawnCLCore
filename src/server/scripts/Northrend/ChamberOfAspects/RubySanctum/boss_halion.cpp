@@ -698,19 +698,24 @@ class npc_halion_controller : public CreatureScript
                             _events.ScheduleEvent(EVENT_SHADOW_PULSARS_SHOOT, 29000);   // 9 sec channel duration, every 20th second
                             break;
                         case EVENT_TWILIGHT_MENDING:
-                            bool repeatEvent = true;
+						{
+                            bool _repeatEvent = true;
                             for (uint8 i = DATA_HALION; i <= DATA_TWILIGHT_HALION; ++i)
                             {
                                 if (Creature* halion = ObjectAccessor::GetCreature(*me, _instance->GetData64(i)))
                                 {
                                     DoCast(halion, SPELL_TWILIGHT_MENDING, true);
                                     if (i == DATA_TWILIGHT_HALION && halion->GetHealth() == halion->GetMaxHealth())
-                                        repeatEvent = false;
+									{
+                                        _repeatEvent = false;
+									}
                                 }
                             }
-                            if (repeatEvent)
+                            if (_repeatEvent){
                                 _events.ScheduleEvent(EVENT_TWILIGHT_MENDING, 1000);
+							}
                             break;
+						}
                         default:
                             break;
                     }
@@ -1383,7 +1388,7 @@ class spell_halion_marks : public SpellScriptLoader
             /// See spell_halion_combustion_consumption_AuraScript::OnRemove
             void BeforeDispel(DispelInfo* dispelData)
             {
-                Unit* dispelledUnit = dispelData->GetDispelled();
+                Unit* dispelledUnit = dispelData->GetDispeller();
                 // Prevent any stack from being removed at this point.
                 dispelData->SetRemovedCharges(0);
 
