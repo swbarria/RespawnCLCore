@@ -145,7 +145,7 @@ class boss_baltharus_the_warborn : public CreatureScript
                 summon->CastSpell(summon, SPELL_SPAWN_EFFECT, true);
             }
 
-            void DamageTaken(Unit* /*attacker*/, uint32& damage, SpellInfo const* /*spellInfo*/)
+            void DamageTaken(Unit* /*attacker*/, uint32& damage)
             {
                 if (GetDifficulty() == RAID_DIFFICULTY_10MAN_NORMAL)
                 {
@@ -154,7 +154,9 @@ class boss_baltharus_the_warborn : public CreatureScript
                 }
                 else
                 {
-                    if ((me->HealthBelowPctDamaged(66, damage) && _cloneCount == 2) || (me->HealthBelowPctDamaged(33, damage) && _cloneCount == 1))
+                    if (me->HealthBelowPctDamaged(66, damage) && _cloneCount == 2)
+                        DoAction(ACTION_CLONE);
+                    else if (me->HealthBelowPctDamaged(33, damage) && _cloneCount == 1)
                         DoAction(ACTION_CLONE);
                 }
 
@@ -241,7 +243,7 @@ class npc_baltharus_the_warborn_clone : public CreatureScript
                 _events.ScheduleEvent(EVENT_ENERVATING_BRAND, urand(10000, 15000));
             }
 
-            void DamageTaken(Unit* /*attacker*/, uint32& damage, SpellInfo const* /*spellInfo*/)
+            void DamageTaken(Unit* /*attacker*/, uint32& damage)
             {
                 // Setting DATA_BALTHARUS_SHARED_HEALTH to 0 when killed would bug the boss.
                 if (_instance && me->GetHealth() > damage)
