@@ -38,32 +38,32 @@ public:
     {
         static ChatCommand gobjectAddCommandTable[] =
         {
-            { "temp",           SEC_GAMEMASTER,     false, &HandleGameObjectAddTempCommand,   "", NULL },
-            { "",               SEC_GAMEMASTER,     false, &HandleGameObjectAddCommand,       "", NULL },
+            { "temp",           SEC_DEVELOPER,     false, &HandleGameObjectAddTempCommand,   "", NULL },
+            { "",               SEC_DEVELOPER,     false, &HandleGameObjectAddCommand,       "", NULL },
             { NULL,             0,                  false, NULL,                              "", NULL }
         };
         static ChatCommand gobjectSetCommandTable[] =
         {
-            { "phase",          SEC_GAMEMASTER,     false, &HandleGameObjectSetPhaseCommand,  "", NULL },
-            { "state",          SEC_GAMEMASTER,     false, &HandleGameObjectSetStateCommand,  "", NULL },
+            { "phase",          SEC_DEVELOPER,     false, &HandleGameObjectSetPhaseCommand,  "", NULL },
+            { "state",          SEC_DEVELOPER,     false, &HandleGameObjectSetStateCommand,  "", NULL },
             { NULL,             0,                  false, NULL,                              "", NULL }
         };
         static ChatCommand gobjectCommandTable[] =
         {
-            { "activate",       SEC_GAMEMASTER,     false, &HandleGameObjectActivateCommand,  "", NULL },
-            { "delete",         SEC_GAMEMASTER,     false, &HandleGameObjectDeleteCommand,    "", NULL },
-            { "info",           SEC_GAMEMASTER,     false, &HandleGameObjectInfoCommand,      "", NULL },
-            { "move",           SEC_GAMEMASTER,     false, &HandleGameObjectMoveCommand,      "", NULL },
-            { "near",           SEC_GAMEMASTER,     false, &HandleGameObjectNearCommand,      "", NULL },
-            { "target",         SEC_GAMEMASTER,     false, &HandleGameObjectTargetCommand,    "", NULL },
-            { "turn",           SEC_GAMEMASTER,     false, &HandleGameObjectTurnCommand,      "", NULL },
-            { "add",            SEC_GAMEMASTER,     false, NULL,            "", gobjectAddCommandTable },
-            { "set",            SEC_GAMEMASTER,     false, NULL,            "", gobjectSetCommandTable },
+            { "activate",       SEC_DEVELOPER,     false, &HandleGameObjectActivateCommand,  "", NULL },
+            { "delete",         SEC_DEVELOPER,     false, &HandleGameObjectDeleteCommand,    "", NULL },
+            { "info",           SEC_DEVELOPER,     false, &HandleGameObjectInfoCommand,      "", NULL },
+            { "move",           SEC_DEVELOPER,     false, &HandleGameObjectMoveCommand,      "", NULL },
+            { "near",           SEC_DEVELOPER,     false, &HandleGameObjectNearCommand,      "", NULL },
+            { "target",         SEC_DEVELOPER,     false, &HandleGameObjectTargetCommand,    "", NULL },
+            { "turn",           SEC_DEVELOPER,     false, &HandleGameObjectTurnCommand,      "", NULL },
+            { "add",            SEC_DEVELOPER,     false, NULL,            "", gobjectAddCommandTable },
+            { "set",            SEC_DEVELOPER,     false, NULL,            "", gobjectSetCommandTable },
             { NULL,             0,                  false, NULL,                              "", NULL }
         };
         static ChatCommand commandTable[] =
         {
-            { "gobject",        SEC_GAMEMASTER,     false, NULL,                "", gobjectCommandTable },
+            { "gobject",        SEC_DEVELOPER,     false, NULL,                "", gobjectCommandTable },
             { NULL,             0,                  false, NULL,                               "", NULL }
         };
         return commandTable;

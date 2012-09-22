@@ -25,6 +25,10 @@ EndScriptData */
 #include "ScriptMgr.h"
 #include "Chat.h"
 #include "BattlefieldMgr.h"
+enum Battlefield
+{
+    WINTERGRASP   = 1,
+};
 
 class bf_commandscript : public CommandScript
 {
@@ -37,14 +41,13 @@ public:
         {
             { "start",          SEC_ADMINISTRATOR,  false, &HandleBattlefieldStart,            "", NULL },
             { "stop",           SEC_ADMINISTRATOR,  false, &HandleBattlefieldEnd,              "", NULL },
-            { "switch",         SEC_ADMINISTRATOR,  false, &HandleBattlefieldSwitch,           "", NULL },
             { "timer",          SEC_ADMINISTRATOR,  false, &HandleBattlefieldTimer,            "", NULL },
             { "enable",         SEC_ADMINISTRATOR,  false, &HandleBattlefieldEnable,           "", NULL },
             { NULL,             0,                  false, NULL,                               "", NULL }
         };
         static ChatCommand commandTable[] =
         {
-            { "bf",             SEC_ADMINISTRATOR,  false, NULL,            "", battlefieldcommandTable },
+            { "wg",             SEC_ADMINISTRATOR,  false, NULL,            "", battlefieldcommandTable },
             { NULL,             0,                  false, NULL,                               "", NULL }
         };
         return commandTable;
@@ -52,124 +55,52 @@ public:
 
     static bool HandleBattlefieldStart(ChatHandler* handler, const char* args)
     {
-        uint32 battleid = 0;
-        char* battleid_str = strtok((char*)args, " ");
-        if (!battleid_str)
-            return false;
-
-        battleid = atoi(battleid_str);
-
-        Battlefield* bf = sBattlefieldMgr->GetBattlefieldByBattleId(battleid);
+        Battlefield* bf = sBattlefieldMgr->GetBattlefieldByBattleId(WINTERGRASP);
 
         if (!bf)
             return false;
 
         bf->StartBattle();
-
-        if (battleid == 1)
-            handler->SendGlobalGMSysMessage("Wintergrasp (Command start used)");
-
+        handler->SendGlobalGMSysMessage("Wintergrasp Started");
         return true;
     }
 
     static bool HandleBattlefieldEnd(ChatHandler* handler, const char* args)
     {
-        uint32 battleid = 0;
-        char* battleid_str = strtok((char*)args, " ");
-        if (!battleid_str)
-            return false;
-
-        battleid = atoi(battleid_str);
-
-        Battlefield* bf = sBattlefieldMgr->GetBattlefieldByBattleId(battleid);
-
-        if (!bf)
-            return false;
-
+        Battlefield* bf = sBattlefieldMgr->GetBattlefieldByBattleId(WINTERGRASP);
         bf->EndBattle(true);
-
-        if (battleid == 1)
-            handler->SendGlobalGMSysMessage("Wintergrasp (Command stop used)");
-
+        handler->SendGlobalGMSysMessage("Wintergrasp Stopped");
         return true;
     }
 
     static bool HandleBattlefieldEnable(ChatHandler* handler, const char* args)
     {
-        uint32 battleid = 0;
-        char* battleid_str = strtok((char*)args, " ");
-        if (!battleid_str)
-            return false;
-
-        battleid = atoi(battleid_str);
-
-        Battlefield* bf = sBattlefieldMgr->GetBattlefieldByBattleId(battleid);
-
-        if (!bf)
-            return false;
-
+        Battlefield* bf = sBattlefieldMgr->GetBattlefieldByBattleId(WINTERGRASP);
         if (bf->IsEnabled())
         {
             bf->ToggleBattlefield(false);
-            if (battleid == 1)
-                handler->SendGlobalGMSysMessage("Wintergrasp is disabled");
+            handler->SendGlobalGMSysMessage("Wintergrasp is disabled");
         }
         else
         {
             bf->ToggleBattlefield(true);
-            if (battleid == 1)
-                handler->SendGlobalGMSysMessage("Wintergrasp is enabled");
+            handler->SendGlobalGMSysMessage("Wintergrasp is enabled");
         }
-
-        return true;
-    }
-
-    static bool HandleBattlefieldSwitch(ChatHandler* handler, const char* args)
-    {
-        uint32 battleid = 0;
-        char* battleid_str = strtok((char*)args, " ");
-        if (!battleid_str)
-            return false;
-
-        battleid = atoi(battleid_str);
-
-        Battlefield* bf = sBattlefieldMgr->GetBattlefieldByBattleId(battleid);
-
-        if (!bf)
-            return false;
-
-        bf->EndBattle(false);
-        if (battleid == 1)
-            handler->SendGlobalGMSysMessage("Wintergrasp (Command switch used)");
 
         return true;
     }
 
     static bool HandleBattlefieldTimer(ChatHandler* handler, const char* args)
     {
-        uint32 battleid = 0;
         uint32 time = 0;
-        char* battleid_str = strtok((char*)args, " ");
-        if (!battleid_str)
-            return false;
         char* time_str = strtok(NULL, " ");
         if (!time_str)
             return false;
-
-        battleid = atoi(battleid_str);
-
         time = atoi(time_str);
-
-        Battlefield* bf = sBattlefieldMgr->GetBattlefieldByBattleId(battleid);
-
-        if (!bf)
-            return false;
-
+        Battlefield* bf = sBattlefieldMgr->GetBattlefieldByBattleId(WINTERGRASP);
         bf->SetTimer(time * IN_MILLISECONDS);
         bf->SendInitWorldStatesToAll();
-        if (battleid == 1)
-            handler->SendGlobalGMSysMessage("Wintergrasp (Command timer used)");
-
+        handler->SendGlobalGMSysMessage("Wintergrasp (Command timer used)");
         return true;
     }
 };

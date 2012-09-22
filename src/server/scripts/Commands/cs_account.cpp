@@ -36,17 +36,17 @@ public:
         static ChatCommand accountSetCommandTable[] =
         {
             { "addon",          SEC_ADMINISTRATOR,  true,  &HandleAccountSetAddonCommand,     "", NULL },
-            { "gmlevel",        SEC_CONSOLE,        true,  &HandleAccountSetGmLevelCommand,   "", NULL },
-            { "password",       SEC_CONSOLE,        true,  &HandleAccountSetPasswordCommand,  "", NULL },
+            { "gmlevel",        SEC_ADMINISTRATOR,        true,  &HandleAccountSetGmLevelCommand,   "", NULL },
+            { "password",       SEC_ADMINISTRATOR,        true,  &HandleAccountSetPasswordCommand,  "", NULL },
             { NULL,             SEC_PLAYER,         false, NULL,                              "", NULL }
         };
         static ChatCommand accountCommandTable[] =
         {
-            { "addon",          SEC_MODERATOR,      false, &HandleAccountAddonCommand,        "", NULL },
+            { "addon",          SEC_ADMINISTRATOR,      false, &HandleAccountAddonCommand,        "", NULL },
             { "create",         SEC_CONSOLE,        true,  &HandleAccountCreateCommand,       "", NULL },
             { "delete",         SEC_CONSOLE,        true,  &HandleAccountDeleteCommand,       "", NULL },
             { "onlinelist",     SEC_CONSOLE,        true,  &HandleAccountOnlineListCommand,   "", NULL },
-            { "lock",           SEC_PLAYER,         false, &HandleAccountLockCommand,         "", NULL },
+            { "lock",           SEC_ADMINISTRATOR,         false, &HandleAccountLockCommand,         "", NULL },
             { "set",            SEC_ADMINISTRATOR,  true,  NULL,            "", accountSetCommandTable },
             { "password",       SEC_PLAYER,         false, &HandleAccountPasswordCommand,     "", NULL },
             { "",               SEC_PLAYER,         false, &HandleAccountCommand,             "", NULL },

@@ -35,21 +35,21 @@ public:
     {
         static ChatCommand honorAddCommandTable[] =
         {
-            { "kill",           SEC_GAMEMASTER,     false, &HandleHonorAddKillCommand,         "", NULL },
-            { "",               SEC_GAMEMASTER,     false, &HandleHonorAddCommand,             "", NULL },
+            { "kill",           SEC_ADMINISTRATOR,     false, &HandleHonorAddKillCommand,         "", NULL },
+            { "",               SEC_ADMINISTRATOR,     false, &HandleHonorAddCommand,             "", NULL },
             { NULL,             0,                  false, NULL,                               "", NULL }
         };
 
         static ChatCommand honorCommandTable[] =
         {
-            { "add",            SEC_GAMEMASTER,     false, NULL,               "", honorAddCommandTable },
-            { "update",         SEC_GAMEMASTER,     false, &HandleHonorUpdateCommand,          "", NULL },
+            { "add",            SEC_ADMINISTRATOR,     false, NULL,               "", honorAddCommandTable },
+            { "update",         SEC_ADMINISTRATOR,     false, &HandleHonorUpdateCommand,          "", NULL },
             { NULL,             0,                  false, NULL,                               "", NULL }
         };
 
         static ChatCommand commandTable[] =
         {
-            { "honor",          SEC_GAMEMASTER,     false, NULL,                  "", honorCommandTable },
+            { "honor",          SEC_ADMINISTRATOR,     false, NULL,                  "", honorCommandTable },
             { NULL,             0,                  false, NULL,                               "", NULL }
         };
         return commandTable;

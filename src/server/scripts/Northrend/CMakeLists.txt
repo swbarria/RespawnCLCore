@@ -10,6 +10,7 @@
 if(SCRIPTS)
   include(Northrend/ChamberOfAspects/CMakeLists.txt)
 endif()
+message("  -> Prepared: Chamber Of Aspects")
 
 set(scripts_STAT_SRCS
   ${scripts_STAT_SRCS}

@@ -52,15 +52,15 @@ public:
 
         static ChatCommand characterCommandTable[] =
         {
-            { "customize",      SEC_GAMEMASTER,     true,  &HandleCharacterCustomizeCommand,       "", NULL },
-            { "changefaction",  SEC_GAMEMASTER,     true,  &HandleCharacterChangeFactionCommand,   "", NULL },
-            { "changerace",     SEC_GAMEMASTER,     true,  &HandleCharacterChangeRaceCommand,      "", NULL },
-            { "deleted",        SEC_GAMEMASTER,     true,  NULL,                                   "", characterDeletedCommandTable },
+            { "customize",      SEC_ADMINISTRATOR,     true,  &HandleCharacterCustomizeCommand,       "", NULL },
+            { "changefaction",  SEC_ADMINISTRATOR,     true,  &HandleCharacterChangeFactionCommand,   "", NULL },
+            { "changerace",     SEC_ADMINISTRATOR,     true,  &HandleCharacterChangeRaceCommand,      "", NULL },
+            { "deleted",        SEC_ADMINISTRATOR,     true,  NULL,                                   "", characterDeletedCommandTable },
             { "erase",          SEC_CONSOLE,        true,  &HandleCharacterEraseCommand,           "", NULL },
             { "level",          SEC_ADMINISTRATOR,  true,  &HandleCharacterLevelCommand,           "", NULL },
-            { "rename",         SEC_GAMEMASTER,     true,  &HandleCharacterRenameCommand,          "", NULL },
-            { "reputation",     SEC_GAMEMASTER,     true,  &HandleCharacterReputationCommand,      "", NULL },
-            { "titles",         SEC_GAMEMASTER,     true,  &HandleCharacterTitlesCommand,          "", NULL },
+            { "rename",         SEC_ADMINISTRATOR,     true,  &HandleCharacterRenameCommand,          "", NULL },
+            { "reputation",     SEC_ADMINISTRATOR,     true,  &HandleCharacterReputationCommand,      "", NULL },
+            { "titles",         SEC_ADMINISTRATOR,     true,  &HandleCharacterTitlesCommand,          "", NULL },
             { NULL,             0,                  false, NULL,                                   "", NULL }
         };
 

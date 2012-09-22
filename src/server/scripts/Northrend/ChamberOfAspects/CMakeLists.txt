@@ -20,5 +20,3 @@ set(scripts_STAT_SRCS
   Northrend/ChamberOfAspects/RubySanctum/boss_general_zarithrian.cpp
   Northrend/ChamberOfAspects/RubySanctum/boss_halion.cpp
 )
-
-message("  -> Prepared: Chamber Of Aspects")
