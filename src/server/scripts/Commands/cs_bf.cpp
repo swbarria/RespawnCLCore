@@ -25,7 +25,7 @@ EndScriptData */
 #include "ScriptMgr.h"
 #include "Chat.h"
 #include "BattlefieldMgr.h"
-enum Battlefield
+enum BattlefieldID
 {
     WINTERGRASP   = 1,
 };
