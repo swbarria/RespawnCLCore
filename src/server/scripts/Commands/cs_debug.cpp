@@ -43,10 +43,10 @@ public:
     {
         static ChatCommand debugPlayCommandTable[] =
         {
-            { "cinematic",      SEC_DEVELOPER,      false, &HandleDebugPlayCinematicCommand,   "", NULL },
-            { "movie",          SEC_DEVELOPER,      false, &HandleDebugPlayMovieCommand,       "", NULL },
-            { "sound",          SEC_DEVELOPER,      false, &HandleDebugPlaySoundCommand,       "", NULL },
-            { NULL,             SEC_PLAYER,     false, NULL,                               "", NULL }
+            { "cinematic",      SEC_DEVELOPER,  false, &HandleDebugPlayCinematicCommand,   "", NULL },
+            { "movie",          SEC_DEVELOPER,  false, &HandleDebugPlayMovieCommand,   "", NULL },
+            { "sound",          SEC_DEVELOPER,  false, &HandleDebugPlaySoundCommand,       "", NULL },
+            { NULL,             SEC_DEVELOPER,  false, NULL,                               "", NULL }
         };
         static ChatCommand debugSendCommandTable[] =
         {
@@ -61,22 +61,22 @@ public:
             { "sellerror",      SEC_DEVELOPER,  false, &HandleDebugSendSellErrorCommand,      "", NULL },
             { "setphaseshift",  SEC_DEVELOPER,  false, &HandleDebugSendSetPhaseShiftCommand,  "", NULL },
             { "spellfail",      SEC_DEVELOPER,  false, &HandleDebugSendSpellFailCommand,      "", NULL },
-            { NULL,             SEC_PLAYER,         false, NULL,                                  "", NULL }
+            { NULL,             SEC_DEVELOPER,  false, NULL,                                  "", NULL }
         };
         static ChatCommand debugCommandTable[] =
         {
-            { "setbit",         V,  false, &HandleDebugSet32BitCommand,        "", NULL },
+            { "setbit",         SEC_DEVELOPER,  false, &HandleDebugSet32BitCommand,        "", NULL },
             { "threat",         SEC_DEVELOPER,  false, &HandleDebugThreatListCommand,      "", NULL },
             { "hostil",         SEC_DEVELOPER,  false, &HandleDebugHostileRefListCommand,  "", NULL },
-            { "anim",           SEC_DEVELOPER,     false, &HandleDebugAnimCommand,            "", NULL },
+            { "anim",           SEC_DEVELOPER,  false, &HandleDebugAnimCommand,            "", NULL },
             { "arena",          SEC_DEVELOPER,  false, &HandleDebugArenaCommand,           "", NULL },
             { "bg",             SEC_DEVELOPER,  false, &HandleDebugBattlegroundCommand,    "", NULL },
             { "getitemstate",   SEC_DEVELOPER,  false, &HandleDebugGetItemStateCommand,    "", NULL },
-            { "lootrecipient",  SEC_DEVELOPER,     false, &HandleDebugGetLootRecipientCommand, "", NULL },
+            { "lootrecipient",  SEC_DEVELOPER,  false, &HandleDebugGetLootRecipientCommand, "", NULL },
             { "getvalue",       SEC_DEVELOPER,  false, &HandleDebugGetValueCommand,        "", NULL },
             { "getitemvalue",   SEC_DEVELOPER,  false, &HandleDebugGetItemValueCommand,    "", NULL },
             { "Mod32Value",     SEC_DEVELOPER,  false, &HandleDebugMod32ValueCommand,      "", NULL },
-            { "play",           SEC_DEVELOPER,      false, NULL,              "", debugPlayCommandTable },
+            { "play",           SEC_DEVELOPER,  false, NULL,              "", debugPlayCommandTable },
             { "send",           SEC_DEVELOPER,  false, NULL,              "", debugSendCommandTable },
             { "setaurastate",   SEC_DEVELOPER,  false, &HandleDebugSetAuraStateCommand,    "", NULL },
             { "setitemvalue",   SEC_DEVELOPER,  false, &HandleDebugSetItemValueCommand,    "", NULL },
@@ -88,15 +88,15 @@ public:
             { "update",         SEC_DEVELOPER,  false, &HandleDebugUpdateCommand,          "", NULL },
             { "itemexpire",     SEC_DEVELOPER,  false, &HandleDebugItemExpireCommand,      "", NULL },
             { "areatriggers",   SEC_DEVELOPER,  false, &HandleDebugAreaTriggersCommand,    "", NULL },
-            { "los",            SEC_DEVELOPER,      false, &HandleDebugLoSCommand,             "", NULL },
+            { "los",            SEC_DEVELOPER,  false, &HandleDebugLoSCommand,             "", NULL },
             { "moveflags",      SEC_DEVELOPER,  false, &HandleDebugMoveflagsCommand,       "", NULL },
-            { NULL,             SEC_PLAYER,         false, NULL,                               "", NULL }
+            { NULL,             SEC_DEVELOPER,  false, NULL,                               "", NULL }
         };
         static ChatCommand commandTable[] =
         {
-            { "debug",          SEC_DEVELOPER,      true,  NULL,                  "", debugCommandTable },
+            { "debug",          SEC_DEVELOPER,  true,  NULL,                  "", debugCommandTable },
             { "wpgps",          SEC_DEVELOPER,  false, &HandleWPGPSCommand,                "", NULL },
-            { NULL,             SEC_PLAYER,         false, NULL,                  "",              NULL }
+            { NULL,             SEC_DEVELOPER,  false, NULL,                  "",              NULL }
         };
         return commandTable;
     }
