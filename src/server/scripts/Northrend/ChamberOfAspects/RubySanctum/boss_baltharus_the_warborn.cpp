@@ -83,7 +83,7 @@ class boss_baltharus_the_warborn : public CreatureScript
                 _Reset();
                 events.SetPhase(PHASE_INTRO);
                 events.ScheduleEvent(EVENT_OOC_CHANNEL, 0, 0, PHASE_INTRO);
-                _cloneCount = RAID_MODE<uint8>(1, 2, 2, 2);
+                _cloneCount = RAID_MODE<uint8>(1, 2, 1, 2);
                 instance->SetData(DATA_BALTHARUS_SHARED_HEALTH, me->GetMaxHealth());
             }
 
@@ -147,23 +147,30 @@ class boss_baltharus_the_warborn : public CreatureScript
 
             void DamageTaken(Unit* /*attacker*/, uint32& damage)
             {
-                if (GetDifficulty() == RAID_DIFFICULTY_10MAN_NORMAL)
+                switch(GetDifficulty())
                 {
+                    case RAID_DIFFICULTY_10MAN_NORMAL:
+					case RAID_DIFFICULTY_10MAN_HEROIC:           
+                    {
                     if (me->HealthBelowPctDamaged(50, damage) && _cloneCount == 1)
                         DoAction(ACTION_CLONE);
-                }
-                else
-                {
+                    break;
+                    }
+					case RAID_DIFFICULTY_25MAN_NORMAL:
+                    case RAID_DIFFICULTY_25MAN_HEROIC:
+                    {
                     if (me->HealthBelowPctDamaged(66, damage) && _cloneCount == 2)
                         DoAction(ACTION_CLONE);
-                    else if (me->HealthBelowPctDamaged(33, damage) && _cloneCount == 1)
+                    if (me->HealthBelowPctDamaged(33, damage) && _cloneCount == 1)
                         DoAction(ACTION_CLONE);
+                    break;
+                    }
+                    default: 
+                        break;
                 }
-
                 if (me->GetHealth() > damage)
                     instance->SetData(DATA_BALTHARUS_SHARED_HEALTH, me->GetHealth() - damage);
             }
-
             void UpdateAI(uint32 const diff)
             {
                 if (!UpdateVictim() && !(events.GetPhaseMask() & PHASE_INTRO_MASK))
@@ -344,3 +351,9 @@ void AddSC_boss_baltharus_the_warborn()
     new npc_baltharus_the_warborn_clone();
     new spell_baltharus_enervating_brand_trigger();
 }
+                         DoAction(ACTION_CLONE);
+-                    else if (me->HealthBelowPctDamaged(33, damage) && _cloneCount == 1)
++                    if (me->HealthBelowPctDamaged(33, damage) && _cloneCount == 1)
+                         DoAction(ACTION_CLONE);
++                    break;
++                    }
